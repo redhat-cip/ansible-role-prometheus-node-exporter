@@ -20,15 +20,15 @@
 
 - name: Include RPM-based repo (when necessary)
   include_tasks: CentOS/rpm-based-repo.yml
-  when: ansible_distribution == 'CentOS'
+  when: ansible_os_family == 'RedHat'
 
 - name: Ensure node-exporter is installed
-  become: True
+  become: true
   package:
     name: '{{ prometheus_node_exporter_package_name }}'
 
 - name: Ensure start-up configuration is set (RedHat)
-  become: True
+  become: true
   lineinfile:
     path: /etc/default/node_exporter
     regexp: '^NODE_EXPORTER_OPTS='
@@ -37,7 +37,7 @@
   notify: prometheus_node_exporter-restart
 
 - name: Ensure start-up configuration is set (FreeBSD)
-  become: True
+  become: true
   lineinfile:
     path: /etc/rc.conf
     regexp: '^node_exporter_args='
@@ -46,8 +46,8 @@
   notify: prometheus_node_exporter-restart
 
 - name: Ensure node-exporter is started and enabled
-  become: True
+  become: true
   service:
     name: '{{ prometheus_node_exporter_service_name }}'
     state: started
-    enabled: yes
+    enabled: true

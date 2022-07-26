@@ -15,20 +15,20 @@
 
 ---
 - name: Import GPG keys
-  become: True
+  become: true
   rpm_key:
     key: '{{ item }}'
   with_items:
-      - https://packagecloud.io/prometheus-rpm/release/gpgkey
-      - https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
+    - https://packagecloud.io/prometheus-rpm/release/gpgkey
+    - https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
 
 - name: Have the prometheus repo configured
-  become: True
+  become: true
   yum_repository:
     name: prometheus
     description: prometheus
     baseurl: https://packagecloud.io/prometheus-rpm/release/el/$releasever/$basearch
-    gpgcheck: yes
+    gpgcheck: true
     gpgkey:
       - https://packagecloud.io/prometheus-rpm/release/gpgkey
       - https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
