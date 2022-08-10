@@ -14,18 +14,17 @@
 dependencies: []
 
 galaxy_info:
-  author: redhat-cip
+  role_name: prometheus_node_exporter
+  author: redhat_cip
   description: An Ansible module for the Prometheus Node Exporter
   company: "Red Hat"
   license: "Apache 2.0"
-  min_ansible_version: 2.0
+  min_ansible_version: "2.9"
   platforms:
     - name: EL
       versions:
-        - 7
-    - name: FreeBSD
-      versions:
-        - 11
+        - "7"
+        - "8"
   galaxy_tags:
     - prometheus
     - monitoring

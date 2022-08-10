@@ -51,3 +51,6 @@
     name: '{{ prometheus_node_exporter_service_name }}'
     state: started
     enabled: true
+
+- name: Apply firewalld rules
+  import_tasks: firewalld.yml
